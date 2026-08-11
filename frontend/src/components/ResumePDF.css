@@ -1,0 +1,175 @@
+/* ================================
+   RESUME PDF PREVIEW
+================================ */
+
+.pdf-container {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 40px auto;
+  padding: 18mm;
+  background: white;
+  color: #111827;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* HEADER */
+
+.pdf-header {
+  text-align: center;
+  border-bottom: 2px solid #222;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.pdf-header h1 {
+  margin: 0 0 10px;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pdf-contact {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  font-size: 12px;
+  color: #333;
+}
+
+.pdf-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 7px;
+  font-size: 12px;
+  color: #444;
+}
+
+/* COMMON SECTION */
+
+.pdf-section {
+  margin-top: 18px;
+}
+
+.pdf-section h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  border-bottom: 1.5px solid #333;
+  padding-bottom: 5px;
+  margin: 0 0 10px;
+  letter-spacing: 0.5px;
+}
+
+.pdf-section p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* SKILLS */
+
+.pdf-skills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 30px;
+  font-size: 12px;
+}
+
+.pdf-skills span {
+  display: block;
+}
+
+/* EXPERIENCE */
+
+.pdf-experience {
+  margin-bottom: 14px;
+}
+
+.pdf-experience h3 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.pdf-experience p {
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+/* PROJECTS */
+
+.pdf-project {
+  margin-bottom: 12px;
+}
+
+.pdf-project h3 {
+  margin: 0 0 4px;
+  font-size: 13px;
+}
+
+.pdf-project p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* EDUCATION */
+
+.pdf-education {
+  margin-bottom: 12px;
+}
+
+.pdf-education h3 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.pdf-education p {
+  margin: 3px 0;
+  font-size: 12px;
+}
+
+/* LANGUAGES */
+
+.pdf-languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 12px;
+}
+
+/* CERTIFICATES */
+
+.pdf-certificate {
+  margin-bottom: 10px;
+}
+
+.pdf-certificate h3 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.pdf-certificate p {
+  margin: 3px 0;
+  font-size: 12px;
+}
+
+/* PRINT / PDF */
+
+@media print {
+
+  body {
+    background: white !important;
+  }
+
+  .pdf-container {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none;
+  }
+}

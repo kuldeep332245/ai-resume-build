@@ -1,0 +1,11 @@
+0000000000000000000000000000000000000000 34f8f6a9269856d8d07f79044bd68bb0c875e1d1 kuldeep singh <kuldeep0203singh@gmail.com> 1786302208 +0530	commit (initial): first commit
+34f8f6a9269856d8d07f79044bd68bb0c875e1d1 34f8f6a9269856d8d07f79044bd68bb0c875e1d1 kuldeep singh <kuldeep0203singh@gmail.com> 1786302270 +0530	Branch: renamed refs/heads/master to refs/heads/main
+34f8f6a9269856d8d07f79044bd68bb0c875e1d1 34f8f6a9269856d8d07f79044bd68bb0c875e1d1 kuldeep singh <kuldeep0203singh@gmail.com> 1786342849 +0530	Branch: renamed refs/heads/main to refs/heads/main
+34f8f6a9269856d8d07f79044bd68bb0c875e1d1 6be998d156ae268b4d540b53825c95a61da22f5b kuldeep singh <kuldeep0203singh@gmail.com> 1786346886 +0530	commit: Update API URL for production
+6be998d156ae268b4d540b53825c95a61da22f5b 4ae43440a69688c34d2d416d67f2498b26d8dc4d kuldeep singh <kuldeep0203singh@gmail.com> 1786348513 +0530	commit: Initial commit with backend
+4ae43440a69688c34d2d416d67f2498b26d8dc4d 4ae43440a69688c34d2d416d67f2498b26d8dc4d kuldeep singh <kuldeep0203singh@gmail.com> 1786349918 +0530	Branch: renamed refs/heads/main to refs/heads/main2
+4ae43440a69688c34d2d416d67f2498b26d8dc4d e7e5e6bea0eae80f99dc6229e1eb4b5995fe2cb2 kuldeep singh <kuldeep0203singh@gmail.com> 1786350126 +0530	commit: Remove .evn file
+e7e5e6bea0eae80f99dc6229e1eb4b5995fe2cb2 09aaa701496dde32855c1dd7e7cad28e1bd5dc90 kuldeep singh <kuldeep0203singh@gmail.com> 1786356106 +0530	commit: Update API URL for production
+09aaa701496dde32855c1dd7e7cad28e1bd5dc90 ca1ef1dbf173ff33b4944b0d7a33e7e048d8dee4 kuldeep singh <kuldeep0203singh@gmail.com> 1786364416 +0530	commit: Fix: Direct MongoDB URI in db.js
+ca1ef1dbf173ff33b4944b0d7a33e7e048d8dee4 ef1ebf7d95dd0fc8227f1f4d876c3b1f4597d7f9 kuldeep singh <kuldeep0203singh@gmail.com> 1786450499 +0530	commit: Final project with all features
+ef1ebf7d95dd0fc8227f1f4d876c3b1f4597d7f9 1802dfdf197988c1f2d60bd5d99a25a73b3b4ec7 kuldeep singh <kuldeep0203singh@gmail.com> 1786450839 +0530	commit: Update API URL for production
