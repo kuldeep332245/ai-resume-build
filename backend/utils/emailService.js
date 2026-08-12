@@ -1,17 +1,20 @@
+const nodemailer = require('nodemailer');
+
 const sendEmail = async (options) => {
-  try {
-    console.log('📧 ===== EMAIL SENT =====');
-    console.log('To:', options.email);
-    console.log('Subject:', options.subject);
-    console.log('HTML:', options.html);
-    console.log('📧 ===== EMAIL END =====');
-    
-    // Simulate success
-    return true;
-  } catch (error) {
-    console.error('❌ Email error:', error);
-    throw error;
-  }
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  await transporter.sendMail({
+    from: `"AI Resume Builder" <${process.env.EMAIL_USER}>`,
+    to: options.email,
+    subject: options.subject,
+    html: options.html,
+  });
 };
 
 module.exports = sendEmail;

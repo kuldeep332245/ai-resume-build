@@ -18,7 +18,7 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/resume', require('./routes/resumeRoutes'));
 app.use('/api/admin', require('./routes/adminRoutes'));
-
+app.use('/api/ai', require('./routes/aiRoutes'));
 // Test route
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Server is working! 🚀' });

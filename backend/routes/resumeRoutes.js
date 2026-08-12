@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/create', authMiddleware, createResume);
 router.get('/all', authMiddleware, cacheMiddleware(300), getResumes);
 router.get('/:id', authMiddleware, cacheMiddleware(300), getResumeById);
+router.delete('/:id', authMiddleware, deleteResume);
 router.put('/:id', authMiddleware, updateResume); 
 router.get('/public/:shareLink', cacheMiddleware(300), getPublicResume);
 

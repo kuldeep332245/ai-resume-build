@@ -37,17 +37,22 @@ const getResumeById = async (req, res) => {
 };
 
 // Update Resume
+// Update Resume
 const updateResume = async (req, res) => {
   try {
     const { isPublic } = req.body;
     const updateData = { ...req.body };
-    
+
+    // Security: userId aur _id ko kabhi bhi request body se update mat hone do
+    delete updateData.userId;
+    delete updateData._id;
+
     if (isPublic) {
       updateData.shareLink = crypto.randomBytes(16).toString('hex');
     } else {
       updateData.shareLink = '';
     }
-    
+
     const resume = await Resume.findOneAndUpdate(
       { _id: req.params.id, userId: req.user.id },
       updateData,

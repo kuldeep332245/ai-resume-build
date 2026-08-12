@@ -99,15 +99,16 @@ const ResumeBuilder = () => {
   };
 
   const getAISuggestions = async () => {
-    setLoading(true);
-    try {
-      setAiSuggestion('💡 Add more quantifiable achievements. Use action verbs like "developed", "managed", "created". Include relevant keywords for ATS.');
-    } catch (error) {
-      alert('AI suggestions failed');
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const response = await API.post('/ai/suggestions', { resume });
+    setAiSuggestion(response.data.suggestions);
+  } catch (error) {
+    alert('AI suggestions failed: ' + (error.response?.data?.message || 'Please try again'));
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div style={styles.container}>

@@ -4,31 +4,38 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const generateToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
+};
+
 // Register
 const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    
-    // Check if user exists
+
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Please fill all fields' });
+    }
+    if (password.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters' });
+    }
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create user
     const user = new User({ name, email, password: hashedPassword });
     await user.save();
 
-    // Generate token
-    const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '7d' });
+    const token = generateToken(user._id);
 
-    res.status(201).json({ 
-      token, 
-      user: { id: user._id, name, email } 
+    res.status(201).json({
+      token,
+      user: { id: user._id, name, email }
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -40,40 +47,44 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
 
-    // Generate token
-    const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '7d' });
+    const token = generateToken(user._id);
 
-    res.json({ 
-      token, 
-      user: { id: user._id, name: user.name, email: user.email } 
+    res.json({
+      token,
+      user: { id: user._id, name: user.name, email: user.email }
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 // Forgot Password
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
+
+    // Security: same response chahe user mile ya na mile,
+    // isse attacker ko pata nahi chalta konsa email registered hai
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.json({ message: 'If that email exists, a reset link has been sent' });
     }
 
     const resetToken = crypto.randomBytes(20).toString('hex');
-    user.resetPasswordToken = resetToken;
+    // Token ko hash karke save karo, plain text nahi
+    const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+
+    user.resetPasswordToken = hashedToken;
     user.resetPasswordExpire = Date.now() + 3600000;
     await user.save();
 
@@ -89,7 +100,7 @@ const forgotPassword = async (req, res) => {
       `,
     });
 
-    res.json({ message: 'Password reset email sent successfully' });
+    res.json({ message: 'If that email exists, a reset link has been sent' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -101,8 +112,14 @@ const resetPassword = async (req, res) => {
     const { token } = req.params;
     const { password } = req.body;
 
+    if (!password || password.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters' });
+    }
+
+    const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+
     const user = await User.findOne({
-      resetPasswordToken: token,
+      resetPasswordToken: hashedToken,
       resetPasswordExpire: { $gt: Date.now() },
     });
 
